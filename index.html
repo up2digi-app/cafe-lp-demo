@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="UP2 Coffee Space - Coffee shop modern dengan ambience cozy, menu premium, dan ruang nyaman untuk bekerja dan bersantai.">
+    <title>UP2 Coffee Space | Modern Lifestyle Coffee Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        cream: {
+                            50: '#FDFBF7',
+                            100: '#F5F0E6',
+                            200: '#E8DFD1',
+                            300: '#D5C6B1',
+                        },
+                        coffee: {
+                            400: '#A48265',
+                            500: '#8C6B4E',
+                            600: '#6E4F36',
+                            800: '#3A271B',
+                            900: '#261910', // Deep coffee brown
+                        },
+                        charcoal: {
+                            800: '#3F3F46',
+                            900: '#18181B',
+                        },
+                        warm: {
+                            400: '#F59E0B',
+                            500: '#D97706', // Warm orange accent
+                            600: '#B45309',
+                        },
+                        olive: {
+                            500: '#6B705C', // Muted olive
+                        }
+                    },
+                    boxShadow: {
+                        'glass': '0 10px 40px -10px rgba(38, 25, 16, 0.1)',
+                        'card': '0 15px 35px -10px rgba(38, 25, 16, 0.08)',
+                        'glow-warm': '0 0 30px rgba(217, 119, 6, 0.2)',
+                        'premium': '0 20px 50px -15px rgba(38, 25, 16, 0.15)',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out infinite 3s',
+                        'pulse-wa': 'pulse-wa 2s infinite',
+                        'pulse-soft': 'pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        'pulse-wa': {
+                            '0%': { boxShadow: '0 0 0 0 rgba(37, 211, 102, 0.5)' },
+                            '70%': { boxShadow: '0 0 0 15px rgba(37, 211, 102, 0)' },
+                            '100%': { boxShadow: '0 0 0 0 rgba(37, 211, 102, 0)' },
+                        },
+                        'pulse-soft': {
+                            '0%, 100%': { opacity: 1 },
+                            '50%': { opacity: .6 },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Base Styling */
+        body { background-color: #FDFBF7; color: #3F3F46; }
+
+        /* Glassmorphism Navbar */
+        .glass-nav {
+            background: rgba(253, 251, 247, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(140, 107, 78, 0.1);
+            transition: all 0.4s ease;
+        }
+        .glass-nav.scrolled {
+            background: rgba(253, 251, 247, 0.98);
+            box-shadow: 0 4px 30px rgba(38, 25, 16, 0.05);
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+        }
+
+        /* Nav Link Underline */
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #8C6B4E;
+            transition: width 0.3s ease-in-out;
+            border-radius: 2px;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        /* Hover Zoom Cinematic */
+        .img-cinematic-container { overflow: hidden; }
+        .img-cinematic { transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .img-cinematic-container:hover .img-cinematic { transform: scale(1.08); }
+
+        /* Custom Gradients */
+        .bg-warm-gradient {
+            background: linear-gradient(135deg, #FDFBF7 0%, #F5F0E6 50%, #E8DFD1 100%);
+        }
+        .bg-coffee-gradient {
+            background: linear-gradient(135deg, #3A271B 0%, #261910 100%);
+        }
+        .text-gradient-warm {
+            background: linear-gradient(135deg, #8C6B4E 0%, #D97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Glass Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        /* Form Inputs */
+        .input-premium {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(140, 107, 78, 0.2);
+            transition: all 0.3s ease;
+        }
+        .input-premium:focus {
+            outline: none;
+            border-color: #8C6B4E;
+            box-shadow: 0 0 0 3px rgba(140, 107, 78, 0.1);
+        }
+
+        /* Accordion Logistics */
+        .faq-content {
+            transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out, padding 0.4s ease;
+            max-height: 0; opacity: 0; overflow: hidden;
+        }
+        .faq-content.open { max-height: 300px; opacity: 1; padding-bottom: 1.5rem; }
+        .faq-icon { transition: transform 0.4s ease; }
+        .faq-icon.open { transform: rotate(180deg); }
+
+        /* Masonry Support */
+        .masonry-grid {
+            column-count: 2; /* Mobile friendly compress */
+            column-gap: 1rem;
+        }
+        @media (min-width: 640px) { .masonry-grid { column-gap: 1.5rem; } }
+        @media (min-width: 1024px) { .masonry-grid { column-count: 3; } }
+        .masonry-item { break-inside: avoid; margin-bottom: 1rem; }
+        @media (min-width: 640px) { .masonry-item { margin-bottom: 1.5rem; } }
+    </style>
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body class="font-sans antialiased overflow-x-hidden selection:bg-coffee-500 selection:text-white">
+
+    <!-- ================= 1. STICKY NAVBAR ================= -->
+    <nav id="navbar" class="fixed w-full z-[100] glass-nav py-4 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <!-- Brand Logo -->
+                <a href="#" class="flex-shrink-0 flex items-center gap-3 group">
+                    <div class="w-10 h-10 bg-charcoal-900 text-cream-50 rounded-xl flex items-center justify-center font-bold text-lg shadow-glass overflow-hidden">
+                        <i class="fas fa-mug-hot"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-extrabold text-xl tracking-tight text-charcoal-900 leading-none">UP2 Coffee</span>
+                        <span class="text-[9px] font-bold text-coffee-500 uppercase tracking-[0.25em] mt-0.5">Space</span>
+                    </div>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="#menu" class="nav-link text-sm font-semibold text-charcoal-800 hover:text-coffee-600 transition-colors">Menu</a>
+                    <a href="#tentang" class="nav-link text-sm font-semibold text-charcoal-800 hover:text-coffee-600 transition-colors">Tentang</a>
+                    <a href="#gallery" class="nav-link text-sm font-semibold text-charcoal-800 hover:text-coffee-600 transition-colors">Gallery</a>
+                    <a href="#event" class="nav-link text-sm font-semibold text-charcoal-800 hover:text-coffee-600 transition-colors">Event</a>
+                    <a href="#lokasi" class="nav-link text-sm font-semibold text-charcoal-800 hover:text-coffee-600 transition-colors">Lokasi</a>
+                </div>
+
+                <!-- Desktop CTA -->
+                <div class="hidden lg:block pl-6 border-l border-cream-200">
+                    <a href="#reservasi" class="inline-flex items-center justify-center px-7 py-2.5 bg-coffee-800 hover:bg-coffee-600 text-white text-sm font-bold rounded-full transition-colors duration-300 shadow-md transform hover:-translate-y-0.5">
+                        Reservasi Sekarang
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="lg:hidden flex items-center gap-4">
+                    <a href="#reservasi" class="text-xs font-bold bg-coffee-800 text-white px-4 py-2 rounded-full shadow-sm">RSVP</a>
+                    <button id="mobile-menu-btn" class="text-charcoal-900 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-cream-50/95 backdrop-blur-xl border-t border-cream-200 absolute w-full shadow-2xl pb-6 top-full left-0">
+            <div class="px-4 pt-4 space-y-1">
+                <a href="#menu" class="block px-4 py-3 text-sm font-bold text-charcoal-800 hover:bg-cream-100 rounded-xl">Menu Signature</a>
+                <a href="#tentang" class="block px-4 py-3 text-sm font-bold text-charcoal-800 hover:bg-cream-100 rounded-xl">Tentang UP2 Space</a>
+                <a href="#gallery" class="block px-4 py-3 text-sm font-bold text-charcoal-800 hover:bg-cream-100 rounded-xl">Cafe Gallery</a>
+                <a href="#event" class="block px-4 py-3 text-sm font-bold text-charcoal-800 hover:bg-cream-100 rounded-xl">Event & Live Music</a>
+                <a href="#lokasi" class="block px-4 py-3 text-sm font-bold text-charcoal-800 hover:bg-cream-100 rounded-xl">Lokasi Kami</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- ================= 2. HERO SECTION ================= -->
+        <section class="relative pt-24 pb-12 md:pt-40 md:pb-24 overflow-hidden bg-cream-50 border-b border-cream-200">
+            <!-- Background Decorative Elements -->
+            <div class="absolute top-0 right-0 w-full h-full overflow-hidden pointer-events-none z-0 opacity-40">
+                <div class="absolute -top-32 -right-32 w-[40rem] h-[40rem] bg-coffee-200 rounded-full blur-[120px]"></div>
+                <div class="absolute top-1/2 -left-20 w-[30rem] h-[30rem] bg-warm-200/50 rounded-full blur-[100px]"></div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="lg:grid lg:grid-cols-12 lg:gap-12 items-center flex flex-col-reverse lg:flex-row">
+                    
+                    <!-- Left: Content -->
+                    <div class="text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left mt-10 lg:mt-0">
+                        <p class="text-[10px] md:text-xs text-coffee-600 font-bold uppercase tracking-[0.2em] mb-4">
+                            Demo Template Landing Page Cafe - UP2WebKit
+                        </p>
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card text-charcoal-900 font-bold text-[10px] mb-4 md:mb-6 uppercase tracking-widest shadow-sm">
+                            <span class="text-warm-500"><i class="fas fa-star"></i></span> Premium Social Hangout Place
+                        </div>
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-charcoal-900 tracking-tight leading-[1.1] mb-6">
+                            Ngopi Nyaman, <br>
+                            <span class="text-gradient-warm font-light italic">Work & Chill Lebih Seru</span>
+                        </h1>
+                        <p class="text-sm md:text-base text-charcoal-800/70 sm:text-lg leading-relaxed font-medium mb-8 md:mb-10 max-w-lg mx-auto lg:mx-0">
+                            *Coffee shop* modern dengan *ambience cozy*, menu premium, dan ruang nyaman untuk bekerja, nongkrong, maupun menikmati waktu santai bersama teman.
+                        </p>
+                        
+                        <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center lg:justify-start mb-10 md:mb-12">
+                            <a href="#reservasi" class="px-8 py-3.5 md:py-4 text-sm font-bold rounded-full text-white bg-coffee-800 hover:bg-coffee-900 transition-colors shadow-card text-center hover:-translate-y-1 transform duration-300">
+                                Reservasi Sekarang
+                            </a>
+                            <a href="#menu" class="px-8 py-3.5 md:py-4 text-sm font-bold rounded-full text-charcoal-900 bg-white hover:bg-cream-100 transition-all text-center flex items-center justify-center border border-cream-200">
+                                <i class="fas fa-book-open text-coffee-500 mr-2"></i> Lihat Menu
+                            </a>
+                        </div>
+
+                        <!-- Trust Metrics -->
+                        <div class="flex flex-wrap justify-center lg:justify-start gap-4 md:gap-8 items-center pt-6 md:pt-8 border-t border-cream-200">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm text-coffee-500 text-lg border border-cream-100"><i class="fas fa-users"></i></div>
+                                <div class="text-left">
+                                    <p class="text-sm md:text-base font-extrabold text-charcoal-900 leading-tight">5000+</p>
+                                    <p class="text-[8px] md:text-[9px] font-bold text-charcoal-800/50 uppercase tracking-widest">Happy Customer</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm text-warm-500 text-lg border border-cream-100"><i class="fas fa-coffee"></i></div>
+                                <div class="text-left">
+                                    <p class="text-sm md:text-base font-extrabold text-charcoal-900 leading-tight">Specialty</p>
+                                    <p class="text-[8px] md:text-[9px] font-bold text-charcoal-800/50 uppercase tracking-widest">Arabica Blend</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Cinematic Visual -->
+                    <div class="lg:col-span-6 relative w-[85%] sm:w-2/3 lg:w-full max-w-[500px] lg:max-w-none mx-auto">
+                        <!-- Main Image -->
+                        <div class="relative z-20 rounded-[2.5rem] overflow-hidden aspect-[4/5] shadow-2xl border-8 border-white/40">
+                            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80" alt="Cafe Ambience" class="w-full h-full object-cover">
+                            <!-- Overlay for warmth -->
+                            <div class="absolute inset-0 bg-coffee-900/10 mix-blend-multiply"></div>
+                        </div>
+                        
+                        <!-- Floating Card 1 -->
+                        <div class="absolute top-1/4 -left-4 md:-left-8 z-30 glass-card p-3 md:p-4 rounded-2xl flex items-center gap-3 animate-float shadow-glass">
+                            <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-cream-100 text-coffee-600 flex items-center justify-center text-lg md:text-xl shrink-0"><i class="fas fa-wifi"></i></div>
+                            <div>
+                                <p class="text-[9px] md:text-[10px] text-charcoal-900 font-extrabold uppercase tracking-wider leading-tight">High-Speed WiFi</p>
+                                <p class="text-[8px] md:text-[9px] text-charcoal-800/60 font-medium">100 Mbps Connection</p>
+                            </div>
+                        </div>
+
+                        <!-- Floating Card 2 -->
+                        <div class="absolute bottom-1/4 -right-4 md:-right-8 z-30 bg-charcoal-900/90 backdrop-blur-md p-3 md:p-4 rounded-2xl flex flex-col items-center animate-float-delayed shadow-2xl border border-charcoal-800">
+                            <div class="text-warm-400 text-xl md:text-2xl mb-1"><i class="fas fa-music"></i></div>
+                            <p class="text-[8px] md:text-[10px] text-white font-extrabold uppercase tracking-widest text-center leading-tight">Live Music<br>Weekend</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW 2.5: RESERVATION PREVIEW -->
+        <section class="py-12 bg-cream-50 relative -mt-8 z-20">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-white/60 backdrop-blur-xl rounded-[2rem] p-6 md:p-8 shadow-premium border border-white flex flex-col lg:flex-row items-center justify-between gap-6">
+                    <div class="w-full lg:w-1/3 text-center lg:text-left">
+                        <span class="text-warm-500 font-bold tracking-[0.2em] text-[10px] uppercase mb-1 block">Easy Booking</span>
+                        <h3 class="text-2xl font-extrabold text-charcoal-900">Book Your Spot</h3>
+                        <p class="text-xs text-charcoal-800/60 font-medium mt-1">Amankan tempat favoritmu sekarang.</p>
+                    </div>
+                    
+                    <div class="w-full lg:w-2/3">
+                        <form action="https://wa.link/i8w855" target="_blank" class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 items-end">
+                            <div>
+                                <label class="block text-[10px] font-bold text-charcoal-900 mb-1 uppercase tracking-wider">Tamu</label>
+                                <select class="w-full px-4 py-2.5 rounded-xl input-premium text-xs text-charcoal-800 font-medium cursor-pointer appearance-none">
+                                    <option>2 Orang</option>
+                                    <option>4 Orang</option>
+                                    <option>6 Orang</option>
+                                    <option>8+ Orang</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-charcoal-900 mb-1 uppercase tracking-wider">Tanggal</label>
+                                <input type="date" class="w-full px-4 py-2.5 rounded-xl input-premium text-xs text-charcoal-800 font-medium cursor-pointer">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-charcoal-900 mb-1 uppercase tracking-wider">Area</label>
+                                <select class="w-full px-4 py-2.5 rounded-xl input-premium text-xs text-charcoal-800 font-medium cursor-pointer appearance-none">
+                                    <option>Indoor</option>
+                                    <option>Outdoor</option>
+                                    <option>Smoking Area</option>
+                                    <option>Workspace</option>
+                                </select>
+                            </div>
+                            <div>
+                                <button type="submit" class="w-full px-4 py-2.5 bg-coffee-800 hover:bg-coffee-900 text-white text-xs font-bold rounded-xl transition-all shadow-md transform hover:-translate-y-0.5 flex items-center justify-center gap-1.5">
+                                    <i class="fab fa-whatsapp"></i> Reservasi
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 3. FEATURED MENU ================= -->
+        <section id="menu" class="py-16 md:py-24 bg-white relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16 gap-6">
+                    <div class="max-w-2xl">
+                        <span class="text-coffee-500 font-bold tracking-[0.2em] text-xs uppercase mb-4 block">Signature Taste</span>
+                        <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-charcoal-900 tracking-tight">Menu Terfavorit</h2>
+                        <p class="text-charcoal-800/60 mt-4 font-medium text-sm md:text-base">Biji kopi pilihan yang di-*roast* dengan sempurna, dipadukan dengan hidangan lezat peneman hari Anda.</p>
+                    </div>
+                    <a href="#" class="inline-flex items-center text-sm font-bold text-coffee-600 hover:text-coffee-800 transition-colors group">
+                        Lihat Menu Lengkap <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                    <!-- Menu 1 -->
+                    <div class="group rounded-[2rem] overflow-hidden bg-cream-50 border border-cream-100 hover:shadow-card transition-all duration-300 relative">
+                        <!-- Best Seller Badge -->
+                        <div class="absolute -right-2 top-4 z-10">
+                            <span class="bg-warm-500 text-white text-[9px] font-extrabold px-4 py-1.5 rounded-l-full shadow-md uppercase tracking-widest flex items-center gap-1">
+                                <i class="fas fa-fire"></i> #1 Most Ordered
+                            </span>
+                        </div>
+                        <div class="relative aspect-[4/3] overflow-hidden img-cinematic-container">
+                            <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=600&q=80" alt="Latte" class="w-full h-full object-cover img-cinematic">
+                            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-extrabold text-charcoal-900 uppercase tracking-widest shadow-sm">Coffee</div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold text-charcoal-900 group-hover:text-coffee-600 transition-colors">Vanilla Oat Latte</h3>
+                                <span class="font-extrabold text-coffee-800">45k</span>
+                            </div>
+                            <p class="text-sm text-charcoal-800/60 font-medium mb-6 line-clamp-2">Perpaduan espresso ringan, oat milk premium, dan sirup vanilla *homemade* yang *creamy*.</p>
+                            <a href="#reservasi" class="w-full py-3 rounded-xl border border-charcoal-200 text-charcoal-900 font-bold text-sm hover:bg-charcoal-900 hover:text-white transition-colors flex items-center justify-center">
+                                Order Now
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Menu 2 -->
+                    <div class="group rounded-[2rem] overflow-hidden bg-cream-50 border border-cream-100 hover:shadow-card transition-all duration-300 relative">
+                        <div class="absolute -right-2 top-4 z-10">
+                            <span class="bg-charcoal-900 text-white text-[9px] font-extrabold px-4 py-1.5 rounded-l-full shadow-md uppercase tracking-widest flex items-center gap-1">
+                                <i class="fab fa-tiktok"></i> TikTok Favorite
+                            </span>
+                        </div>
+                        <div class="relative aspect-[4/3] overflow-hidden img-cinematic-container">
+                            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" alt="Croffle" class="w-full h-full object-cover img-cinematic">
+                            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-extrabold text-charcoal-900 uppercase tracking-widest shadow-sm">Pastry</div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold text-charcoal-900 group-hover:text-coffee-600 transition-colors">Almond Croffle</h3>
+                                <span class="font-extrabold text-coffee-800">35k</span>
+                            </div>
+                            <p class="text-sm text-charcoal-800/60 font-medium mb-6 line-clamp-2">Croissant waffle renyah di luar lembut di dalam, disajikan dengan *almond slice* dan *maple syrup*.</p>
+                            <a href="#reservasi" class="w-full py-3 rounded-xl border border-charcoal-200 text-charcoal-900 font-bold text-sm hover:bg-charcoal-900 hover:text-white transition-colors flex items-center justify-center">
+                                Order Now
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Menu 3 -->
+                    <div class="group rounded-[2rem] overflow-hidden bg-cream-50 border border-cream-100 hover:shadow-card transition-all duration-300 relative">
+                        <div class="absolute -right-2 top-4 z-10">
+                            <span class="bg-coffee-600 text-white text-[9px] font-extrabold px-4 py-1.5 rounded-l-full shadow-md uppercase tracking-widest flex items-center gap-1">
+                                <i class="fas fa-star"></i> Customer Choice
+                            </span>
+                        </div>
+                        <div class="relative aspect-[4/3] overflow-hidden img-cinematic-container">
+                            <img src="https://images.unsplash.com/photo-1515823662972-da6a2e4d3002?auto=format&fit=crop&w=600&q=80" alt="Matcha" class="w-full h-full object-cover img-cinematic">
+                            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-extrabold text-charcoal-900 uppercase tracking-widest shadow-sm">Non-Coffee</div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold text-charcoal-900 group-hover:text-coffee-600 transition-colors">Kyoto Matcha Latte</h3>
+                                <span class="font-extrabold text-coffee-800">40k</span>
+                            </div>
+                            <p class="text-sm text-charcoal-800/60 font-medium mb-6 line-clamp-2">Authentic matcha bubuk dari Kyoto Jepang dengan tingkat manis yang pas dan *earthy flavor*.</p>
+                            <a href="#reservasi" class="w-full py-3 rounded-xl border border-charcoal-200 text-charcoal-900 font-bold text-sm hover:bg-charcoal-900 hover:text-white transition-colors flex items-center justify-center">
+                                Order Now
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Menu 4 -->
+                    <div class="group rounded-[2rem] overflow-hidden bg-cream-50 border border-cream-100 hover:shadow-card transition-all duration-300">
+                        <div class="relative aspect-[4/3] overflow-hidden img-cinematic-container">
+                            <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=600&q=80" alt="Espresso" class="w-full h-full object-cover img-cinematic">
+                            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-extrabold text-charcoal-900 uppercase tracking-widest shadow-sm">Coffee</div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold text-charcoal-900 group-hover:text-coffee-600 transition-colors">Classic Espresso</h3>
+                                <span class="font-extrabold text-coffee-800">25k</span>
+                            </div>
+                            <p class="text-sm text-charcoal-800/60 font-medium mb-6 line-clamp-2">Ekstraksi murni 100% Arabica House Blend dengan crema yang tebal dan *aftertaste* caramel.</p>
+                            <a href="#reservasi" class="w-full py-3 rounded-xl border border-charcoal-200 text-charcoal-900 font-bold text-sm hover:bg-charcoal-900 hover:text-white transition-colors flex items-center justify-center">
+                                Order Now
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Menu 5 -->
+                    <div class="group rounded-[2rem] overflow-hidden bg-cream-50 border border-cream-100 hover:shadow-card transition-all duration-300 relative">
+                        <div class="absolute -right-2 top-4 z-10">
+                            <span class="bg-olive-500 text-white text-[9px] font-extrabold px-4 py-1.5 rounded-l-full shadow-md uppercase tracking-widest flex items-center gap-1">
+                                Best Seller
+                            </span>
+                        </div>
+                        <div class="relative aspect-[4/3] overflow-hidden img-cinematic-container">
+                            <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=600&q=80" alt="Pasta" class="w-full h-full object-cover img-cinematic">
+                            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-extrabold text-charcoal-900 uppercase tracking-widest shadow-sm">Main Course</div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold text-charcoal-900 group-hover:text-coffee-600 transition-colors">Truffle Spaghetti</h3>
+                                <span class="font-extrabold text-coffee-800">65k</span>
+                            </div>
+                            <p class="text-sm text-charcoal-800/60 font-medium mb-6 line-clamp-2">Spaghetti *al dente* dengan saus krim *mushroom truffle* yang gurih dan *aromatic*.</p>
+                            <a href="#reservasi" class="w-full py-3 rounded-xl border border-charcoal-200 text-charcoal-900 font-bold text-sm hover:bg-charcoal-900 hover:text-white transition-colors flex items-center justify-center">
+                                Order Now
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Menu 6 -->
+                    <div class="group rounded-[2rem] overflow-hidden bg-cream-50 border border-cream-100 hover:shadow-card transition-all duration-300">
+                        <div class="relative aspect-[4/3] overflow-hidden img-cinematic-container">
+                            <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=600&q=80" alt="Dessert" class="w-full h-full object-cover img-cinematic">
+                            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-extrabold text-charcoal-900 uppercase tracking-widest shadow-sm">Dessert</div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold text-charcoal-900 group-hover:text-coffee-600 transition-colors">Classic Tiramisu</h3>
+                                <span class="font-extrabold text-coffee-800">45k</span>
+                            </div>
+                            <p class="text-sm text-charcoal-800/60 font-medium mb-6 line-clamp-2">Dessert Italia autentik dengan *ladyfingers* celup espresso dan krim mascarpone lembut.</p>
+                            <a href="#reservasi" class="w-full py-3 rounded-xl border border-charcoal-200 text-charcoal-900 font-bold text-sm hover:bg-charcoal-900 hover:text-white transition-colors flex items-center justify-center">
+                                Order Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 4. ABOUT CAFE ================= -->
+        <section id="tentang" class="py-16 md:py-24 bg-charcoal-900 text-cream-50 relative overflow-hidden">
+            <!-- Texture overlay -->
+            <div class="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                    
+                    <!-- Left: Content -->
+                    <div>
+                        <span class="text-warm-500 font-bold tracking-[0.2em] text-xs uppercase mb-4 block">Tentang UP2 Coffee Space</span>
+                        <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-6 tracking-tight leading-[1.2]">
+                            Lebih dari Sekadar Kedai Kopi, Ini Ruang Inspirasi Anda.
+                        </h2>
+                        
+                        <div class="prose prose-invert prose-lg text-cream-200/80 font-medium text-sm md:text-base">
+                            <p class="mb-6">
+                                Lahir dari kecintaan terhadap budaya ngopi komunal ala Skandinavia, UP2 Coffee Space didesain menjadi *hidden gem* di tengah hiruk-pikuk kota. Kami memadukan estetika *minimalist warm* dengan fungsionalitas ruang modern.
+                            </p>
+                            <p class="mb-8">
+                                Komitmen kami sederhana: menyajikan kopi *specialty* terbaik hasil *roasting* lokal, sambil menyediakan *ambience* yang mendukung produktivitas kerja (*workspace friendly*) sekaligus kenyamanan bersosialisasi.
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-8 border-t border-charcoal-800 pt-8">
+                            <div>
+                                <p class="text-3xl font-extrabold text-white mb-1">100%</p>
+                                <p class="text-xs text-coffee-400 font-bold uppercase tracking-wider">Lokal Arabica Blend</p>
+                            </div>
+                            <div>
+                                <p class="text-3xl font-extrabold text-white mb-1">Cozy</p>
+                                <p class="text-xs text-coffee-400 font-bold uppercase tracking-wider">Workspace Area</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Images -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-4 pt-8">
+                            <div class="rounded-[2rem] overflow-hidden aspect-[4/5] img-cinematic-container">
+                                <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=600&q=80" alt="Coffee Brewing" class="w-full h-full object-cover img-cinematic opacity-90 hover:opacity-100 transition-opacity">
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="rounded-[2rem] overflow-hidden aspect-[4/5] img-cinematic-container">
+                                <img src="https://images.unsplash.com/photo-1525610553991-2bede1a236e2?auto=format&fit=crop&w=600&q=80" alt="Barista Activity" class="w-full h-full object-cover img-cinematic opacity-90 hover:opacity-100 transition-opacity">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW 4.5: DAY & NIGHT AMBIENCE -->
+        <section class="bg-charcoal-950 text-white overflow-hidden">
+            <div class="grid grid-cols-1 md:grid-cols-2">
+                <!-- Day Vibes -->
+                <div class="relative aspect-[4/3] md:aspect-auto md:h-[600px] overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?auto=format&fit=crop&w=1000&q=80" alt="Morning Vibe" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 opacity-90">
+                    <div class="absolute inset-0 bg-gradient-to-t from-charcoal-900 via-charcoal-900/20 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 md:p-12">
+                        <span class="text-warm-400 font-bold tracking-[0.2em] text-[10px] uppercase mb-2 block"><i class="fas fa-sun"></i> Morning Coffee Mood</span>
+                        <h3 class="text-3xl font-extrabold mb-3">Sunlight & Productivity</h3>
+                        <p class="text-cream-200/80 text-sm font-medium max-w-sm">Nikmati hangatnya sinar matahari pagi sambil menikmati *brunch* dan menyelesaikan pekerjaan Anda dengan fokus.</p>
+                    </div>
+                </div>
+
+                <!-- Night Vibes -->
+                <div class="relative aspect-[4/3] md:aspect-auto md:h-[600px] overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=80" alt="Night Vibe" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 opacity-80">
+                    <div class="absolute inset-0 bg-gradient-to-t from-charcoal-900 via-charcoal-900/40 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 md:p-12">
+                        <span class="text-coffee-400 font-bold tracking-[0.2em] text-[10px] uppercase mb-2 block"><i class="fas fa-moon"></i> Night Chill Atmosphere</span>
+                        <h3 class="text-3xl font-extrabold mb-3">Warm Lights & Acoustic</h3>
+                        <p class="text-cream-200/80 text-sm font-medium max-w-sm">Berubah menjadi tempat *hangout* sinematik di malam hari. Cocok untuk bersantai ditemani *live music* dan tawa teman.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW 5.5: WORKSPACE ZONE -->
+        <section class="py-16 md:py-24 bg-white relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <div class="lg:col-span-5 order-2 lg:order-1">
+                        <span class="text-coffee-500 font-bold tracking-[0.2em] text-xs uppercase mb-4 block">Productive Atmosphere</span>
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-charcoal-900 tracking-tight mb-6">Workspace Friendly Cafe</h2>
+                        <p class="text-charcoal-800/70 text-sm md:text-base font-medium leading-relaxed mb-8">
+                            Kami mengerti bahwa kopi yang enak harus dibarengi dengan fasilitas penunjang yang memadai. Area khusus *workspace* kami dirancang untuk *remote worker* dan mahasiswa.
+                        </p>
+                        
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-cream-50 text-coffee-600 flex items-center justify-center border border-cream-200 shrink-0"><i class="fas fa-wifi"></i></div>
+                                <div><h4 class="font-bold text-charcoal-900 text-sm">High-Speed WiFi</h4><p class="text-xs text-charcoal-800/60 font-medium">Koneksi stabil tanpa batas kuota.</p></div>
+                            </li>
+                            <li class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-cream-50 text-coffee-600 flex items-center justify-center border border-cream-200 shrink-0"><i class="fas fa-plug"></i></div>
+                                <div><h4 class="font-bold text-charcoal-900 text-sm">Charging Station</h4><p class="text-xs text-charcoal-800/60 font-medium">Stop kontak tersedia di setiap titik meja.</p></div>
+                            </li>
+                            <li class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-cream-50 text-coffee-600 flex items-center justify-center border border-cream-200 shrink-0"><i class="fas fa-users-cog"></i></div>
+                                <div><h4 class="font-bold text-charcoal-900 text-sm">Meeting Corner</h4><p class="text-xs text-charcoal-800/60 font-medium">Meja komunal besar untuk diskusi santai.</p></div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="lg:col-span-7 order-1 lg:order-2">
+                        <div class="rounded-[2.5rem] overflow-hidden aspect-[4/3] md:aspect-video relative shadow-premium border border-cream-100">
+                            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80" alt="Workspace Concept" class="w-full h-full object-cover">
+                            <div class="absolute bottom-6 right-6 bg-white/90 backdrop-blur px-4 py-2 rounded-xl text-charcoal-900 text-[10px] font-bold uppercase tracking-widest shadow-lg">Long Stay Friendly</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 5. WHY CHOOSE US ================= -->
+        <section class="py-16 md:py-24 bg-cream-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+                    <span class="text-coffee-500 font-bold tracking-[0.2em] text-xs uppercase mb-4 block">Fasilitas & Layanan</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-charcoal-900 tracking-tight">Kenapa Banyak yang Suka Nongkrong di Sini?</h2>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+                    <!-- Icon Card -->
+                    <div class="bg-white rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border border-cream-100 hover:shadow-card hover:-translate-y-2 transition-all duration-300 group text-center">
+                        <div class="w-12 h-12 md:w-16 md:h-16 mx-auto bg-warm-50 text-warm-500 rounded-full flex items-center justify-center text-xl md:text-2xl mb-4 md:mb-6 group-hover:bg-warm-500 group-hover:text-white transition-colors duration-300">
+                            <i class="fas fa-couch"></i>
+                        </div>
+                        <h3 class="text-sm md:text-lg font-bold text-charcoal-900 mb-2 md:mb-3">Cozy Interior</h3>
+                        <p class="text-[10px] md:text-sm text-charcoal-800/60 font-medium leading-relaxed">Pencahayaan hangat dan tata letak ala Skandinavia.</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border border-cream-100 hover:shadow-card hover:-translate-y-2 transition-all duration-300 group text-center">
+                        <div class="w-12 h-12 md:w-16 md:h-16 mx-auto bg-coffee-50 text-coffee-600 rounded-full flex items-center justify-center text-xl md:text-2xl mb-4 md:mb-6 group-hover:bg-coffee-600 group-hover:text-white transition-colors duration-300">
+                            <i class="fas fa-mug-hot"></i>
+                        </div>
+                        <h3 class="text-sm md:text-lg font-bold text-charcoal-900 mb-2 md:mb-3">Specialty Coffee</h3>
+                        <p class="text-[10px] md:text-sm text-charcoal-800/60 font-medium leading-relaxed">Biji kopi grade terbaik dengan konsistensi rasa konsisten.</p>
+                    </div>
+
+                    <div class="bg-white rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border border-cream-100 hover:shadow-card hover:-translate-y-2 transition-all duration-300 group text-center">
+                        <div class="w-12 h-12 md:w-16 md:h-16 mx-auto bg-olive-500/10 text-olive-500 rounded-full flex items-center justify-center text-xl md:text-2xl mb-4 md:mb-6 group-hover:bg-olive-500 group-hover:text-white transition-colors duration-300">
+                            <i class="fas fa-camera-retro"></i>
+                        </div>
+                        <h3 class="text-sm md:text-lg font-bold text-charcoal-900 mb-2 md:mb-3">Aesthetic Spot</h3>
+                        <p class="text-[10px] md:text-sm text-charcoal-800/60 font-medium leading-relaxed">Sudut arsitektur modern yang *camera-ready* & Instagrammable.</p>
+                    </div>
+
+                    <div class="bg-white rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border border-cream-100 hover:shadow-card hover:-translate-y-2 transition-all duration-300 group text-center">
+                        <div class="w-12 h-12 md:w-16 md:h-16 mx-auto bg-warm-50 text-warm-500 rounded-full flex items-center justify-center text-xl md:text-2xl mb-4 md:mb-6 group-hover:bg-warm-500 group-hover:text-white transition-colors duration-300">
+                            <i class="fas fa-guitar"></i>
+                        </div>
+                        <h3 class="text-sm md:text-lg font-bold text-charcoal-900 mb-2 md:mb-3">Live Music</h3>
+                        <p class="text-[10px] md:text-sm text-charcoal-800/60 font-medium leading-relaxed">Nikmati *vibes* santai di akhir pekan dengan *live acoustic*.</p>
+                    </div>
+
+                    <div class="bg-white rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border border-cream-100 hover:shadow-card hover:-translate-y-2 transition-all duration-300 group text-center hidden md:block">
+                        <div class="w-12 h-12 md:w-16 md:h-16 mx-auto bg-coffee-50 text-coffee-600 rounded-full flex items-center justify-center text-xl md:text-2xl mb-4 md:mb-6 group-hover:bg-coffee-600 group-hover:text-white transition-colors duration-300">
+                            <i class="fas fa-smile-beam"></i>
+                        </div>
+                        <h3 class="text-sm md:text-lg font-bold text-charcoal-900 mb-2 md:mb-3">Friendly Barista</h3>
+                        <p class="text-[10px] md:text-sm text-charcoal-800/60 font-medium leading-relaxed">Pelayanan hangat yang membuat Anda merasa di rumah.</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border border-cream-100 hover:shadow-card hover:-translate-y-2 transition-all duration-300 group text-center hidden md:block">
+                        <div class="w-12 h-12 md:w-16 md:h-16 mx-auto bg-charcoal-50 text-charcoal-800 rounded-full flex items-center justify-center text-xl md:text-2xl mb-4 md:mb-6 group-hover:bg-charcoal-800 group-hover:text-white transition-colors duration-300">
+                            <i class="fas fa-parking"></i>
+                        </div>
+                        <h3 class="text-sm md:text-lg font-bold text-charcoal-900 mb-2 md:mb-3">Free Parking</h3>
+                        <p class="text-[10px] md:text-sm text-charcoal-800/60 font-medium leading-relaxed">Area parkir luas dan aman untuk kendaraan Anda.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 6. CAFE GALLERY ================= -->
+        <section id="gallery" class="py-16 md:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 md:mb-16">
+                    <span class="text-coffee-500 font-bold tracking-[0.2em] text-xs uppercase mb-4 block">Visual Diary</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-charcoal-900 tracking-tight">Keseharian di UP2 Space</h2>
+                </div>
+
+                <!-- Masonry Gallery -->
+                <div class="masonry-grid">
+                    <!-- Item 1 -->
+                    <div class="masonry-item rounded-2xl md:rounded-[2rem] overflow-hidden group relative cursor-pointer img-cinematic-container shadow-sm hover:shadow-card">
+                        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=600&q=80" alt="Interior Cafe" class="w-full h-auto img-cinematic block">
+                        <div class="absolute inset-0 bg-charcoal-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <i class="fab fa-instagram text-white text-3xl"></i>
+                        </div>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="masonry-item rounded-2xl md:rounded-[2rem] overflow-hidden group relative cursor-pointer img-cinematic-container shadow-sm hover:shadow-card">
+                        <img src="https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&w=600&q=80" alt="Coffee Aesthetic" class="w-full h-auto img-cinematic block">
+                        <div class="absolute inset-0 bg-charcoal-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <i class="fab fa-instagram text-white text-3xl"></i>
+                        </div>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="masonry-item rounded-2xl md:rounded-[2rem] overflow-hidden group relative cursor-pointer img-cinematic-container shadow-sm hover:shadow-card hidden sm:block">
+                        <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=600&q=80" alt="Workspace Concept" class="w-full h-auto img-cinematic block">
+                        <div class="absolute inset-0 bg-charcoal-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <i class="fab fa-instagram text-white text-3xl"></i>
+                        </div>
+                    </div>
+                    <!-- Item 4 -->
+                    <div class="masonry-item rounded-2xl md:rounded-[2rem] overflow-hidden group relative cursor-pointer img-cinematic-container shadow-sm hover:shadow-card">
+                        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80" alt="Aesthetic Corner" class="w-full h-auto img-cinematic block">
+                        <div class="absolute inset-0 bg-charcoal-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <i class="fab fa-instagram text-white text-3xl"></i>
+                        </div>
+                    </div>
+                    <!-- Item 5 -->
+                    <div class="masonry-item rounded-2xl md:rounded-[2rem] overflow-hidden group relative cursor-pointer img-cinematic-container shadow-sm hover:shadow-card">
+                        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80" alt="Live Music" class="w-full h-auto img-cinematic block">
+                        <div class="absolute inset-0 bg-charcoal-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <i class="fab fa-instagram text-white text-3xl"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 md:mt-12 text-center">
+                    <a href="https://instagram.com" target="_blank" class="inline-flex items-center px-6 py-3 border-2 border-charcoal-200 rounded-full font-bold text-xs md:text-sm text-charcoal-900 hover:border-charcoal-900 transition-colors">
+                        Follow @UP2CoffeeSpace
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 7. EVENT & LIVE MUSIC ================= -->
+        <section id="event" class="py-16 md:py-24 bg-charcoal-900 relative overflow-hidden border-t-[8px] border-coffee-800">
+            <!-- Blur light -->
+            <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-warm-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-12 md:mb-16 gap-6">
+                    <div class="max-w-2xl">
+                        <span class="text-warm-400 font-bold tracking-[0.2em] text-xs uppercase mb-4 block">What's Happening</span>
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">Event & Community</h2>
+                    </div>
+
+                    <!-- NEW: Upcoming Schedule Summary -->
+                    <div class="bg-charcoal-800/80 backdrop-blur rounded-2xl p-4 border border-charcoal-700 hidden md:block">
+                        <p class="text-[10px] text-coffee-400 font-bold uppercase tracking-widest mb-3">Upcoming This Week</p>
+                        <ul class="text-xs text-cream-100 font-medium space-y-2">
+                            <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-warm-500"></div> Jumat: Acoustic Night</li>
+                            <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-coffee-400"></div> Sabtu: Latte Art Class</li>
+                            <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-olive-500"></div> Minggu: Community Meetup</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Event 1 -->
+                    <div class="bg-charcoal-800 rounded-[2rem] p-3 border border-charcoal-700 hover:border-charcoal-500 transition-colors group">
+                        <div class="rounded-2xl overflow-hidden aspect-video mb-4 relative">
+                            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80" alt="Live Acoustic" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                            <div class="absolute top-3 left-3 bg-warm-500 text-charcoal-900 text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">Setiap Jumat</div>
+                        </div>
+                        <div class="px-3 pb-3">
+                            <h3 class="text-lg font-bold text-white mb-2">Friday Acoustic Night</h3>
+                            <p class="text-sm text-charcoal-300 font-medium mb-4">Meriahkan akhir pekanmu dengan penampilan band akustik lokal mulai jam 19.00.</p>
+                            <a href="#reservasi" class="text-warm-400 font-bold text-sm hover:text-white transition-colors inline-flex items-center">
+                                Book Table <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Event 2 -->
+                    <div class="bg-charcoal-800 rounded-[2rem] p-3 border border-charcoal-700 hover:border-charcoal-500 transition-colors group">
+                        <div class="rounded-2xl overflow-hidden aspect-video mb-4 relative">
+                            <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=600&q=80" alt="Coffee Workshop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                            <div class="absolute top-3 left-3 bg-coffee-500 text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">Sabtu Ini</div>
+                        </div>
+                        <div class="px-3 pb-3">
+                            <h3 class="text-lg font-bold text-white mb-2">Latte Art Class</h3>
+                            <p class="text-sm text-charcoal-300 font-medium mb-4">Belajar teknik dasar latte art bersama Head Barista kami. Kuota terbatas 10 orang.</p>
+                            <a href="#reservasi" class="text-warm-400 font-bold text-sm hover:text-white transition-colors inline-flex items-center">
+                                Daftar Workshop <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Event 3 -->
+                    <div class="bg-charcoal-800 rounded-[2rem] p-3 border border-charcoal-700 hover:border-charcoal-500 transition-colors group hidden lg:block">
+                        <div class="rounded-2xl overflow-hidden aspect-video mb-4 relative">
+                            <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=600&q=80" alt="Community Meetup" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                            <div class="absolute top-3 left-3 bg-white text-charcoal-900 text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">Sewa Tempat</div>
+                        </div>
+                        <div class="px-3 pb-3">
+                            <h3 class="text-lg font-bold text-white mb-2">Community Meetup</h3>
+                            <p class="text-sm text-charcoal-300 font-medium mb-4">Tersedia area semi-private untuk kegiatan komunitas, gathering, atau meeting santai.</p>
+                            <a href="#reservasi" class="text-warm-400 font-bold text-sm hover:text-white transition-colors inline-flex items-center">
+                                Info Reservasi <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 8. TESTIMONIAL ================= -->
+        <section id="testimoni" class="py-16 md:py-24 bg-cream-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 md:mb-16">
+                    <span class="text-coffee-500 font-bold tracking-[0.2em] text-xs uppercase mb-4 block">Social Proof</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-charcoal-900 tracking-tight">Kata Mereka yang Sudah Mampir</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+                    <!-- Testi 1 -->
+                    <div class="bg-white rounded-[2rem] p-8 border border-cream-100 relative shadow-sm hover:shadow-card transition-shadow">
+                        <div class="text-warm-400 text-sm mb-5 flex"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="text-charcoal-800 font-medium text-sm leading-relaxed mb-6">"Tempatnya super nyaman buat WFC. WiFinya kenceng, colokan banyak, dan yang terpenting kopinya beneran enak, bukan cuma jual tempat estetik aja. Crofflenya wajib coba!"</p>
+                        
+                        <div class="flex items-center pt-5 border-t border-cream-100">
+                            <img src="https://ui-avatars.com/api/?name=Reza+P&background=D5C6B1&color=3A271B" alt="User" class="w-10 h-10 rounded-full mr-3">
+                            <div>
+                                <h4 class="font-bold text-charcoal-900 text-sm">Reza Pratama</h4>
+                                <!-- NEW Customer Badge -->
+                                <div class="flex items-center gap-1 mt-1">
+                                    <span class="bg-cream-100 text-coffee-600 px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider">Remote Worker</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testi 2 -->
+                    <div class="bg-white rounded-[2rem] p-8 border border-cream-100 relative shadow-sm hover:shadow-card transition-shadow md:-translate-y-4">
+                        <div class="text-warm-400 text-sm mb-5 flex"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="text-charcoal-800 font-medium text-sm leading-relaxed mb-6">"Ambience-nya tuh cozy banget, *warm* gitu lightingnya. Pas dateng pas ada *live acoustic*, vibenya jadi asik parah buat nongkrong bareng temen-teman. Bakal jadi tempat langganan."</p>
+                        
+                        <div class="flex items-center pt-5 border-t border-cream-100">
+                            <img src="https://ui-avatars.com/api/?name=Amanda+K&background=F59E0B&color=fff" alt="User" class="w-10 h-10 rounded-full mr-3">
+                            <div>
+                                <h4 class="font-bold text-charcoal-900 text-sm">Amanda K.</h4>
+                                <div class="flex items-center gap-1 mt-1">
+                                    <span class="bg-cream-100 text-coffee-600 px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider">Lifestyle Creator</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testi 3 -->
+                    <div class="bg-white rounded-[2rem] p-8 border border-cream-100 relative shadow-sm hover:shadow-card transition-shadow">
+                        <div class="text-warm-400 text-sm mb-5 flex"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                        <p class="text-charcoal-800 font-medium text-sm leading-relaxed mb-6">"Nyoba pesen Truffle Spaghettinya dan enak! Matcha Lattenya juga proper, bukan matcha abal-abal yang kemanisan. Plus pelayanannya ramah banget dari baristanya."</p>
+                        
+                        <div class="flex items-center pt-5 border-t border-cream-100">
+                            <img src="https://ui-avatars.com/api/?name=Dimas+W&background=6E4F36&color=fff" alt="User" class="w-10 h-10 rounded-full mr-3">
+                            <div>
+                                <h4 class="font-bold text-charcoal-900 text-sm">Dimas Wijaya</h4>
+                                <div class="flex items-center gap-1 mt-1">
+                                    <span class="bg-cream-100 text-coffee-600 px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider">Coffee Enthusiast</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 9. PROMO SECTION ================= -->
+        <section id="promo" class="py-16 md:py-20 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-warm-gradient rounded-[3rem] p-8 md:p-12 border border-cream-200 shadow-[0_20px_50px_rgba(140,107,78,0.15)] relative overflow-hidden flex flex-col md:flex-row items-center gap-10">
+                    
+                    <!-- Decor -->
+                    <div class="absolute -top-10 -right-10 text-charcoal-900 opacity-5 text-[150px] pointer-events-none transform rotate-12"><i class="fas fa-coffee"></i></div>
+
+                    <!-- Left Image Box -->
+                    <div class="w-full md:w-5/12 relative">
+                        <div class="bg-white rounded-3xl p-3 shadow-lg relative z-10">
+                            <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=600&q=80" alt="Promo Coffee" class="rounded-2xl object-cover aspect-square w-full">
+                        </div>
+                        <div class="absolute -top-4 -left-4 bg-warm-500 text-white font-extrabold text-xs px-4 py-2 rounded-xl shadow-lg transform -rotate-6 z-20">
+                            Best Value
+                        </div>
+                    </div>
+
+                    <!-- Right Content -->
+                    <div class="w-full md:w-7/12 relative z-10 text-center md:text-left">
+                        <span class="inline-block bg-charcoal-900 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4 shadow-sm">Special Offer</span>
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-charcoal-900 mb-4 tracking-tight">Buy 1 Get 1 Coffee Series</h2>
+                        
+                        <div class="space-y-3 mb-8 inline-block text-left">
+                            <p class="text-charcoal-800/80 font-bold flex items-center"><i class="fas fa-check text-coffee-500 mr-2"></i> Berlaku untuk semua varian Espresso Base.</p>
+                            <p class="text-charcoal-800/80 font-bold flex items-center"><i class="fas fa-check text-coffee-500 mr-2"></i> Khusus Dine-in / Makan di tempat.</p>
+                            <p class="text-charcoal-800/80 font-bold flex items-center"><i class="fas fa-check text-coffee-500 mr-2"></i> Berlaku selama jam Happy Hour.</p>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row items-center md:items-start gap-4">
+                            <a href="#reservasi" class="px-8 py-3.5 bg-coffee-800 hover:bg-coffee-900 text-white text-sm font-bold rounded-full transition-all shadow-md transform hover:-translate-y-1 w-full sm:w-auto text-center">
+                                Reservasi Promo
+                            </a>
+                        </div>
+                        
+                        <!-- Mini Alert -->
+                        <div class="mt-6 flex items-center justify-center md:justify-start gap-2 text-xs font-bold text-coffee-800 bg-white/50 w-fit px-4 py-2 rounded-lg mx-auto md:mx-0 backdrop-blur-sm border border-cream-200">
+                            <i class="far fa-clock text-warm-500"></i> Happy Hour: Setiap Hari 17.00 – 20.00
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW 9.5: LOCATION EXPERIENCE -->
+        <section id="lokasi" class="py-16 md:py-24 bg-cream-50 border-t border-cream-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col lg:flex-row justify-between items-end mb-12 gap-6">
+                    <div class="max-w-2xl">
+                        <span class="text-coffee-500 font-bold tracking-[0.2em] text-xs uppercase mb-4 block">Location & Access</span>
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-charcoal-900 tracking-tight">Visit Our Coffee Space</h2>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-[2.5rem] border border-cream-200 shadow-sm overflow-hidden flex flex-col lg:flex-row">
+                    <!-- Left: Info -->
+                    <div class="lg:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 bg-olive-500/10 text-olive-500 text-[10px] font-bold uppercase tracking-widest rounded mb-6 w-fit border border-olive-500/20">
+                            <i class="fas fa-map-marker-alt"></i> Easy Access from Main Road
+                        </div>
+                        
+                        <h3 class="text-2xl font-bold text-charcoal-900 mb-4">Kemang Utama Flagship</h3>
+                        <p class="text-charcoal-800/60 text-sm leading-relaxed mb-8 font-medium">
+                            Berlokasi strategis di pusat hangout Jakarta Selatan. Kami menyediakan area parkir yang luas, serta pilihan seating *indoor* ber-AC maupun *outdoor smoking area* yang teduh.
+                        </p>
+                        
+                        <ul class="space-y-4 mb-8 text-sm text-charcoal-800 font-bold">
+                            <li class="flex items-center gap-3"><i class="fas fa-parking text-warm-500 w-5"></i> Free Parking Area (Mobil & Motor)</li>
+                            <li class="flex items-center gap-3"><i class="fas fa-wind text-warm-500 w-5"></i> Outdoor Smoking Area Terbuka</li>
+                            <li class="flex items-center gap-3"><i class="fas fa-building text-warm-500 w-5"></i> Dekat dengan Halte & Landmark</li>
+                        </ul>
+                    </div>
+
+                    <!-- Right: Map Mockup -->
+                    <div class="lg:w-1/2 relative min-h-[300px] lg:min-h-full bg-cream-100">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.280145244583!2d106.80415301476906!3d-6.226739995492985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f14d30079f01%3A0x2e74f2341fff266d!2sSenopati%2C%20Jakarta%20Selatan!5e0!3m2!1sen!2sid!4v1689230000000!5m2!1sen!2sid" width="100%" height="100%" class="absolute inset-0 w-full h-full object-cover grayscale opacity-90 mix-blend-multiply" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 10. FAQ ================= -->
+        <section id="faq" class="py-20 bg-white border-t border-cream-200">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-extrabold text-charcoal-900 tracking-tight">Frequently Asked Questions</h2>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="bg-cream-50 rounded-[1.5rem] border border-cream-200 overflow-hidden transition-colors hover:border-coffee-300 shadow-sm">
+                        <button class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none">
+                            <span class="font-bold text-charcoal-900 text-sm">Apakah tersedia fasilitas WiFi dan colokan?</span>
+                            <i class="fas fa-chevron-down text-coffee-500 faq-icon text-sm"></i>
+                        </button>
+                        <div class="faq-content px-6 text-charcoal-800/70 font-medium text-sm leading-relaxed">
+                            Tentu! Kami menyediakan koneksi WiFi berkecepatan tinggi gratis untuk pelanggan, serta stop kontak yang tersedia di hampir setiap meja, sangat cocok untuk Anda yang ingin WFC (Work From Cafe).
+                        </div>
+                    </div>
+                    
+                    <div class="bg-cream-50 rounded-[1.5rem] border border-cream-200 overflow-hidden transition-colors hover:border-coffee-300 shadow-sm">
+                        <button class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none">
+                            <span class="font-bold text-charcoal-900 text-sm">Apakah tersedia area merokok (Smoking Area)?</span>
+                            <i class="fas fa-chevron-down text-coffee-500 faq-icon text-sm"></i>
+                        </button>
+                        <div class="faq-content px-6 text-charcoal-800/70 font-medium text-sm leading-relaxed">
+                            Ya, kami memiliki area *outdoor* dan *semi-outdoor* yang sejuk dan asri khusus untuk *smoking area*, terpisah dari ruang *indoor* ber-AC.
+                        </div>
+                    </div>
+                    
+                    <div class="bg-cream-50 rounded-[1.5rem] border border-cream-200 overflow-hidden transition-colors hover:border-coffee-300 shadow-sm">
+                        <button class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none">
+                            <span class="font-bold text-charcoal-900 text-sm">Apakah bisa melakukan reservasi tempat?</span>
+                            <i class="fas fa-chevron-down text-coffee-500 faq-icon text-sm"></i>
+                        </button>
+                        <div class="faq-content px-6 text-charcoal-800/70 font-medium text-sm leading-relaxed">
+                            Sangat bisa. Anda dapat melakukan reservasi meja untuk *meeting*, kumpul teman, atau acara khusus melalui tombol WhatsApp yang tersedia di website ini.
+                        </div>
+                    </div>
+
+                    <div class="bg-cream-50 rounded-[1.5rem] border border-cream-200 overflow-hidden transition-colors hover:border-coffee-300 shadow-sm">
+                        <button class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none">
+                            <span class="font-bold text-charcoal-900 text-sm">Apakah melayani sewa tempat untuk Private Event?</span>
+                            <i class="fas fa-chevron-down text-coffee-500 faq-icon text-sm"></i>
+                        </button>
+                        <div class="faq-content px-6 text-charcoal-800/70 font-medium text-sm leading-relaxed">
+                            Bisa. Kami menyewakan lantai 2 atau seluruh area cafe untuk *private event* seperti *workshop*, ulang tahun, atau *community gathering*. Silakan hubungi admin kami untuk penawaran harga spesial.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 11. FINAL CTA ================= -->
+        <section id="reservasi_final" class="py-24 bg-cream-50 relative">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- NEW Urgency Boost -->
+                <div class="text-center mb-6 animate-pulse-soft">
+                    <span class="inline-flex items-center gap-2 bg-warm-50 border border-warm-200 text-warm-600 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
+                        <i class="fas fa-fire"></i> Weekend Slot Cepat Full. Reservasi Sekarang!
+                    </span>
+                </div>
+
+                <div class="bg-coffee-gradient rounded-[3rem] p-10 md:p-16 lg:p-20 text-center relative overflow-hidden shadow-[0_20px_50px_rgba(38,25,16,0.5)] border border-charcoal-800">
+                    
+                    <!-- Cinematic blur background -->
+                    <div class="absolute inset-0 opacity-30 bg-[url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=80')] bg-cover bg-center mix-blend-overlay"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-charcoal-900/80 to-transparent z-0"></div>
+
+                    <div class="relative z-10 max-w-2xl mx-auto">
+                        <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6 tracking-tight leading-tight">Siap Nongkrong di Tempat Paling Cozy?</h2>
+                        <p class="text-cream-200/80 mb-10 leading-relaxed text-base font-medium max-w-lg mx-auto">Nikmati kopi premium dan suasana *hangout* modern bersama teman maupun komunitas Anda hari ini.</p>
+                        
+                        <div class="flex flex-col sm:flex-row justify-center gap-4">
+                            <a href="https://wa.link/i8w855" target="_blank" class="px-10 py-4 font-bold rounded-full text-charcoal-900 bg-white hover:bg-cream-100 transition-all shadow-glow-warm transform hover:-translate-y-1 text-sm flex items-center justify-center">
+                                Reservasi Sekarang
+                            </a>
+                            <a href="https://wa.link/i8w855" target="_blank" class="px-10 py-4 font-bold rounded-full text-white bg-white/10 border border-white/20 hover:bg-white/20 transition-all flex items-center justify-center text-sm shadow-sm backdrop-blur">
+                                <i class="fab fa-whatsapp text-warm-400 mr-2 text-lg"></i> Chat Admin
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================= 12. FOOTER ================= -->
+    <footer class="bg-charcoal-900 pt-16 pb-8 border-t-[8px] border-coffee-800 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <!-- Top Footer -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-12 border-b border-charcoal-800 pb-12">
+                <!-- Brand -->
+                <div class="md:col-span-4 flex flex-col items-center md:items-start text-center md:text-left">
+                    <a href="#" class="flex items-center gap-3 mb-6 group">
+                        <div class="w-10 h-10 bg-white text-coffee-800 rounded-xl flex items-center justify-center font-bold text-lg shadow-sm shrink-0 overflow-hidden">
+                            <img src="https://ui-avatars.com/api/?name=UP&background=FFF&color=8C6B4E" alt="Logo" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex flex-col text-left">
+                            <span class="font-extrabold text-xl tracking-tight text-white leading-none">UP2 Coffee</span>
+                            <span class="text-[9px] font-bold text-coffee-400 uppercase tracking-[0.25em] mt-0.5">Space</span>
+                        </div>
+                    </a>
+                    <p class="text-sm text-cream-200 font-medium leading-relaxed mb-6 max-w-sm">Tempat berkumpul yang nyaman dengan sajian kopi spesial dan suasana modern. Jadikan setiap tegukan penuh inspirasi.</p>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-10 h-10 rounded-full bg-charcoal-800 border border-charcoal-700 flex items-center justify-center text-cream-300 hover:text-white hover:bg-coffee-600 hover:border-coffee-600 transition-colors shadow-sm"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-charcoal-800 border border-charcoal-700 flex items-center justify-center text-cream-300 hover:text-white hover:bg-coffee-600 hover:border-coffee-600 transition-colors shadow-sm"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-charcoal-800 border border-charcoal-700 flex items-center justify-center text-cream-300 hover:text-white hover:bg-coffee-600 hover:border-coffee-600 transition-colors shadow-sm"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <!-- Links 1 -->
+                <div class="md:col-span-2 md:col-start-6 text-center md:text-left">
+                    <h4 class="font-extrabold text-white mb-5 text-sm uppercase tracking-wider">Navigasi</h4>
+                    <ul class="space-y-4 text-sm font-medium text-cream-200">
+                        <li><a href="#menu" class="hover:text-warm-400 transition-colors">Menu Pilihan</a></li>
+                        <li><a href="#tentang" class="hover:text-warm-400 transition-colors">Cerita Kami</a></li>
+                        <li><a href="#gallery" class="hover:text-warm-400 transition-colors">Gallery Cafe</a></li>
+                        <li><a href="#event" class="hover:text-warm-400 transition-colors">Event & Live Music</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact & Hours -->
+                <div class="md:col-span-5 text-center md:text-left flex flex-col">
+                    <h4 class="font-extrabold text-white mb-5 text-sm uppercase tracking-wider">Kunjungi Kami</h4>
+                    <ul class="space-y-4 text-sm font-medium text-cream-200 inline-block text-left mb-6">
+                        <li class="flex items-start gap-3"><i class="fas fa-map-marker-alt text-warm-400 text-lg mt-0.5 w-5 text-center"></i> <span>Jl. Kopi Senja No. 99, Kemang<br>Jakarta Selatan 12730</span></li>
+                        <li class="flex items-center gap-3"><i class="far fa-clock text-warm-400 text-lg w-5 text-center"></i> <span>Setiap Hari: 08.00 - 22.00 WIB</span></li>
+                    </ul>
+                    
+                    <!-- NEW Footer Mini CTA -->
+                    <div class="mt-auto pt-4 border-t border-charcoal-800">
+                        <p class="text-xs text-cream-200 font-bold mb-3">Free Table Reservation via WhatsApp</p>
+                        <a href="https://wa.link/i8w855" target="_blank" class="inline-flex items-center justify-center w-full px-4 py-2.5 bg-white/5 border border-white/10 text-white text-xs font-bold rounded-xl transition-all hover:bg-coffee-600 hover:border-coffee-500 shadow-sm group backdrop-blur">
+                            <i class="fab fa-whatsapp mr-2 text-base group-hover:animate-pulse"></i> Book Your Table
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Trust Banner -->
+            <div class="w-full mb-8 flex justify-center">
+                <div class="inline-flex flex-wrap justify-center gap-x-6 gap-y-3 bg-charcoal-800 border border-charcoal-700 px-6 py-3 rounded-full text-[10px] sm:text-xs text-cream-200 font-bold uppercase tracking-widest shadow-sm">
+                    <span class="flex items-center"><i class="fas fa-coffee text-coffee-400 mr-1.5"></i> Specialty Coffee</span>
+                    <span class="hidden sm:inline text-charcoal-500">|</span> 
+                    <span class="flex items-center"><i class="fas fa-couch text-warm-400 mr-1.5"></i> Cozy Workspace</span>
+                    <span class="hidden sm:inline text-charcoal-500">|</span> 
+                    <span class="flex items-center"><i class="fas fa-camera text-olive-500 mr-1.5"></i> Instagrammable Cafe</span>
+                </div>
+            </div>
+            
+            <!-- Bottom -->
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left pt-4">
+                <div class="flex flex-col items-center md:items-start gap-1">
+                    <div class="text-xs text-cream-300 font-bold">
+                        &copy; 2026 UP2 WebKit by UP2 Digi-App. All rights reserved.
+                    </div>
+                    <a href="https://wa.link/i8w855" target="_blank" class="text-[9px] font-bold text-coffee-500 hover:text-coffee-400 transition-colors uppercase tracking-widest mt-1">Part of UP2 Digital Ecosystem</a>
+                </div>
+                <div class="text-right">
+                    <p class="text-xs text-cream-300 font-bold">Built with UP2 WebKit</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= 13. FLOATING WHATSAPP ================= -->
+    <div class="fixed bottom-8 right-6 z-[100] flex flex-col items-end gap-2 group">
+        <!-- Tooltip -->
+        <div class="bg-charcoal-900 text-white text-[10px] font-bold px-3 py-2 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0 relative uppercase tracking-wider border border-charcoal-800">
+            Chat Reservation
+            <div class="absolute -bottom-1 right-5 w-2 h-2 bg-charcoal-900 rotate-45 border-r border-b border-charcoal-800"></div>
+        </div>
+        <!-- Button -->
+        <a href="https://wa.link/i8w855" target="_blank" class="bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-[#1EBE5D] transition-colors relative animate-pulse-wa group-hover:scale-110 transform duration-300">
+            <i class="fab fa-whatsapp text-3xl relative z-10"></i>
+        </a>
+    </div>
+
+    <!-- ================= SCRIPTS ================= -->
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            var menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Navbar Scroll Interaction
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 20) {
+                nav.classList.add('scrolled');
+                nav.classList.remove('py-4');
+            } else {
+                nav.classList.remove('scrolled');
+                nav.classList.add('py-4');
+            }
+        });
+
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                if (!targetId) return;
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    const y = targetElement.getBoundingClientRect().top + window.scrollY - 80;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                }
+                const mobileMenu = document.getElementById('mobile-menu');
+                if(mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // FAQ Accordion Logic
+        const faqButtons = document.querySelectorAll('.faq-btn');
+        faqButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Close all other
+                faqButtons.forEach(otherBtn => {
+                    if (otherBtn !== btn) {
+                        otherBtn.nextElementSibling.classList.remove('open');
+                        otherBtn.querySelector('.faq-icon').classList.remove('open');
+                        otherBtn.classList.remove('text-coffee-600');
+                    }
+                });
+
+                // Toggle current
+                const content = this.nextElementSibling;
+                const icon = this.querySelector('.faq-icon');
+                
+                content.classList.toggle('open');
+                icon.classList.toggle('open');
+                
+                if (content.classList.contains('open')) {
+                    this.classList.add('text-coffee-600');
+                } else {
+                    this.classList.remove('text-coffee-600');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
